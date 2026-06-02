@@ -1,0 +1,114 @@
+{
+  "info": {
+    "name": "LabMS Bootstrap",
+    "_postman_id": "f2b1c0b0-0000-4000-9000-bbbbbbbbbbbb",
+    "description": "Bootstraps auth and demonstrates making authenticated requests. Use with the LabMS environment.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "Auth", "login"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"UsernameOrEmail\": \"{{username}}\",\n  \"Password\": \"{{password}}\"\n}"
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Patients - GetAll (auth demo)",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "// Auto-auth pre-request script",
+              "const now = Date.now();",
+              "const expiresAt = parseInt(pm.environment.get('tokenExpiresAt') || '0', 10);",
+              "let token = pm.environment.get('token');",
+              "function setAuth(t){ pm.environment.set('token', t); pm.request.headers.add({ key: 'Authorization', value: 'Bearer ' + t }); }",
+              "function applyHeader(){ const t = pm.environment.get('token'); if (t) { pm.request.headers.upsert({ key: 'Authorization', value: 'Bearer ' + t }); } }",
+              "if (!token || now >= expiresAt) {",
+              "  pm.sendRequest({",
+              "    url: pm.environment.get('baseUrl') + '/api/Auth/login',",
+              "    method: 'POST',",
+              "    header: { 'Content-Type': 'application/json' },",
+              "    body: { mode: 'raw', raw: JSON.stringify({ UsernameOrEmail: pm.environment.get('username'), Password: pm.environment.get('password') }) }",
+              "  }, function (err, res) {",
+              "    if (err) { console.error('Login failed', err); return; }",
+              "    const json = res.json();",
+              "    const t = json && (json.token || json.Token || (json.data && (json.data.token || json.data.Token)));",
+              "    if (!t) { console.error('Token not found in login response'); return; }",
+              "    pm.environment.set('token', t);",
+              "    // Assume 110 minutes validity when exp not provided",
+              "    pm.environment.set('tokenExpiresAt', String(Date.now() + 110 * 60 * 1000));",
+              "    applyHeader();",
+              "  });",
+              "} else {",
+              "  applyHeader();",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status is 200', function(){ pm.response.to.have.status(200); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/Patients",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "Patients"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Inventory - GetAll (auth demo)",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": { "$ref": "#/item/1/event/0/script" }
+        },
+        {
+          "listen": "test",
+          "script": { "$ref": "#/item/1/event/1/script" }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/Inventory",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "Inventory"]
+        }
+      },
+      "response": []
+    }
+  ]
+}

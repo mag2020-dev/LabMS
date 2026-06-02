@@ -1,0 +1,2643 @@
+{
+  "info": {
+    "name": "LabMS API Collection",
+    "description": "Complete API collection for LabMS Laboratory Management System",
+    "version": "1.0.0",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{jwt_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://localhost:5001",
+      "type": "string"
+    },
+    {
+      "key": "jwt_token",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"testuser\",\n  \"email\": \"test@example.com\",\n  \"password\": \"Test123!\",\n  \"firstName\": \"Test\",\n  \"lastName\": \"User\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/register",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"Test123!\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "login"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Patients",
+      "item": [
+        {
+          "name": "Get All Patients",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/patients",
+              "host": ["{{base_url}}"],
+              "path": ["api", "patients"]
+            }
+          }
+        },
+        {
+          "name": "Get Patient by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/patients/{{patient_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "patients", "{{patient_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Create Patient",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"dateOfBirth\": \"1990-01-01\",\n  \"gender\": \"Male\",\n  \"phoneNumber\": \"+1234567890\",\n  \"email\": \"john.doe@example.com\",\n  \"address\": \"123 Main St\",\n  \"city\": \"New York\",\n  \"state\": \"NY\",\n  \"zipCode\": \"10001\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/patients",
+              "host": ["{{base_url}}"],
+              "path": ["api", "patients"]
+            }
+          }
+        },
+        {
+          "name": "Update Patient",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"John Updated\",\n  \"lastName\": \"Doe\",\n  \"phoneNumber\": \"+1234567890\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/patients/{{patient_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "patients", "{{patient_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Delete Patient",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/patients/{{patient_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "patients", "{{patient_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Doctors",
+      "item": [
+        {
+          "name": "Get All Doctors",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/doctors",
+              "host": ["{{base_url}}"],
+              "path": ["api", "doctors"]
+            }
+          }
+        },
+        {
+          "name": "Get Doctor by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/doctors/{{doctor_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "doctors", "{{doctor_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Create Doctor",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Dr. Jane\",\n  \"lastName\": \"Smith\",\n  \"specialty\": \"Cardiology\",\n  \"phoneNumber\": \"+1234567890\",\n  \"email\": \"jane.smith@example.com\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/doctors",
+              "host": ["{{base_url}}"],
+              "path": ["api", "doctors"]
+            }
+          }
+        },
+        {
+          "name": "Update Doctor",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Dr. Jane Updated\",\n  \"lastName\": \"Smith\",\n  \"specialty\": \"Cardiology\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/doctors/{{doctor_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "doctors", "{{doctor_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Delete Doctor",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/doctors/{{doctor_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "doctors", "{{doctor_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Lab Tests",
+      "item": [
+        {
+          "name": "Get All Lab Tests",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/labtests",
+              "host": ["{{base_url}}"],
+              "path": ["api", "labtests"]
+            }
+          }
+        },
+        {
+          "name": "Get Lab Test by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/labtests/{{labtest_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "labtests", "{{labtest_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Create Lab Test",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Blood Glucose Test\",\n  \"description\": \"Measures blood sugar levels\",\n  \"price\": 25.00,\n  \"category\": \"Blood Test\",\n  \"normalRange\": \"70-100 mg/dL\",\n  \"unit\": \"mg/dL\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/labtests",
+              "host": ["{{base_url}}"],
+              "path": ["api", "labtests"]
+            }
+          }
+        },
+        {
+          "name": "Update Lab Test",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Blood Glucose Test Updated\",\n  \"price\": 30.00\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/labtests/{{labtest_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "labtests", "{{labtest_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Delete Lab Test",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/labtests/{{labtest_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "labtests", "{{labtest_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Visits",
+      "item": [
+        {
+          "name": "Get All Visits",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/visits",
+              "host": ["{{base_url}}"],
+              "path": ["api", "visits"]
+            }
+          }
+        },
+        {
+          "name": "Get Visit by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/visits/{{visit_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "visits", "{{visit_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Create Visit",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patientId\": \"{{patient_id}}\",\n  \"doctorId\": \"{{doctor_id}}\",\n  \"visitDate\": \"2024-01-15T10:00:00Z\",\n  \"reason\": \"Routine checkup\",\n  \"notes\": \"Patient feels well\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/visits",
+              "host": ["{{base_url}}"],
+              "path": ["api", "visits"]
+            }
+          }
+        },
+        {
+          "name": "Update Visit",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"Updated reason\",\n  \"notes\": \"Updated notes\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/visits/{{visit_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "visits", "{{visit_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Delete Visit",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/visits/{{visit_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "visits", "{{visit_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Test Orders",
+      "item": [
+        {
+          "name": "Get All Test Orders",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/testorders",
+              "host": ["{{base_url}}"],
+              "path": ["api", "testorders"]
+            }
+          }
+        },
+        {
+          "name": "Get Test Order by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/testorders/{{testorder_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "testorders", "{{testorder_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Create Test Order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"visitId\": \"{{visit_id}}\",\n  \"labTestId\": \"{{labtest_id}}\",\n  \"orderedBy\": \"{{doctor_id}}\",\n  \"notes\": \"Test ordered for routine checkup\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/testorders",
+              "host": ["{{base_url}}"],
+              "path": ["api", "testorders"]
+            }
+          }
+        },
+        {
+          "name": "Update Test Order",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"notes\": \"Updated notes\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/testorders/{{testorder_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "testorders", "{{testorder_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Update Test Order Status",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "\"Completed\""
+            },
+            "url": {
+              "raw": "{{base_url}}/api/testorders/{{testorder_id}}/status",
+              "host": ["{{base_url}}"],
+              "path": ["api", "testorders", "{{testorder_id}}", "status"]
+            }
+          }
+        },
+        {
+          "name": "Delete Test Order",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/testorders/{{testorder_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "testorders", "{{testorder_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Test Results",
+      "item": [
+        {
+          "name": "Get All Test Results",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/testresults",
+              "host": ["{{base_url}}"],
+              "path": ["api", "testresults"]
+            }
+          }
+        },
+        {
+          "name": "Get Test Result by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/testresults/{{testresult_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "testresults", "{{testresult_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Test Results by Order",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/testresults/by-order/{{testorder_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "testresults", "by-order", "{{testorder_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Create Test Result",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"testOrderId\": \"{{testorder_id}}\",\n  \"resultValue\": \"95\",\n  \"unit\": \"mg/dL\",\n  \"normalRange\": \"70-100 mg/dL\",\n  \"isAbnormal\": false,\n  \"notes\": \"Normal glucose level\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/testresults",
+              "host": ["{{base_url}}"],
+              "path": ["api", "testresults"]
+            }
+          }
+        },
+        {
+          "name": "Update Test Result",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"resultValue\": \"105\",\n  \"isAbnormal\": true,\n  \"notes\": \"Slightly elevated glucose level\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/testresults/{{testresult_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "testresults", "{{testresult_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Verify Test Result",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"verifiedBy\": \"{{doctor_id}}\",\n  \"verificationNotes\": \"Result verified by doctor\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/testresults/{{testresult_id}}/verify",
+              "host": ["{{base_url}}"],
+              "path": ["api", "testresults", "{{testresult_id}}", "verify"]
+            }
+          }
+        },
+        {
+          "name": "Delete Test Result",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/testresults/{{testresult_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "testresults", "{{testresult_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Invoices",
+      "item": [
+        {
+          "name": "Get All Invoices",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/invoices",
+              "host": ["{{base_url}}"],
+              "path": ["api", "invoices"]
+            }
+          }
+        },
+        {
+          "name": "Get Invoice by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/invoices/{{invoice_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "invoices", "{{invoice_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Generate Invoice for Visit",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/invoices/generate/{{visit_id}}?discount=10",
+              "host": ["{{base_url}}"],
+              "path": ["api", "invoices", "generate", "{{visit_id}}"],
+              "query": [
+                {
+                  "key": "discount",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Invoice",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"discount\": 15.00,\n  \"notes\": \"Updated invoice notes\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/invoices/{{invoice_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "invoices", "{{invoice_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Delete Invoice",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/invoices/{{invoice_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "invoices", "{{invoice_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Payments",
+      "item": [
+        {
+          "name": "Get All Payments",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/payments",
+              "host": ["{{base_url}}"],
+              "path": ["api", "payments"]
+            }
+          }
+        },
+        {
+          "name": "Get Payment by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/payments/{{payment_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "payments", "{{payment_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Payments by Invoice",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/payments/by-invoice/{{invoice_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "payments", "by-invoice", "{{invoice_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Create Payment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoiceId\": \"{{invoice_id}}\",\n  \"amount\": 100.00,\n  \"paymentMethod\": \"Credit Card\",\n  \"paymentDate\": \"2024-01-15T10:00:00Z\",\n  \"notes\": \"Payment received\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/payments",
+              "host": ["{{base_url}}"],
+              "path": ["api", "payments"]
+            }
+          }
+        },
+        {
+          "name": "Update Payment",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": 120.00,\n  \"notes\": \"Updated payment amount\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/payments/{{payment_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "payments", "{{payment_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Delete Payment",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/payments/{{payment_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "payments", "{{payment_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Reports",
+      "item": [
+        {
+          "name": "Get All Reports",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": ["{{base_url}}"],
+              "path": ["api", "reports"]
+            }
+          }
+        },
+        {
+          "name": "Get Report by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/reports/{{report_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "reports", "{{report_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Create Report",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"visitId\": \"{{visit_id}}\",\n  \"title\": \"Blood Test Report\",\n  \"content\": \"Patient shows normal glucose levels\",\n  \"conclusion\": \"All tests within normal range\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": ["{{base_url}}"],
+              "path": ["api", "reports"]
+            }
+          }
+        },
+        {
+          "name": "Update Report",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Updated Blood Test Report\",\n  \"content\": \"Updated report content\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports/{{report_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "reports", "{{report_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Delete Report",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/reports/{{report_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "reports", "{{report_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Test Packages",
+      "item": [
+        {
+          "name": "Get All Test Packages",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/testpackages",
+              "host": ["{{base_url}}"],
+              "path": ["api", "testpackages"]
+            }
+          }
+        },
+        {
+          "name": "Get Active Test Packages",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/testpackages/active",
+              "host": ["{{base_url}}"],
+              "path": ["api", "testpackages", "active"]
+            }
+          }
+        },
+        {
+          "name": "Get Test Package by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/testpackages/{{package_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "testpackages", "{{package_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Test Packages by Type",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/testpackages/type/Standard",
+              "host": ["{{base_url}}"],
+              "path": ["api", "testpackages", "type", "Standard"]
+            }
+          }
+        },
+        {
+          "name": "Create Test Package",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Basic Health Package\",\n  \"code\": \"BHP001\",\n  \"description\": \"Basic health screening package\",\n  \"packagePrice\": 150.00,\n  \"type\": \"Standard\",\n  \"tests\": [\n    {\n      \"labTestId\": \"{{labtest_id}}\",\n      \"quantity\": 1,\n      \"isOptional\": false\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/testpackages",
+              "host": ["{{base_url}}"],
+              "path": ["api", "testpackages"]
+            }
+          }
+        },
+        {
+          "name": "Update Test Package",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated Health Package\",\n  \"packagePrice\": 175.00\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/testpackages/{{package_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "testpackages", "{{package_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Delete Test Package",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/testpackages/{{package_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "testpackages", "{{package_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Samples",
+      "item": [
+        {
+          "name": "Get All Samples",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/samples",
+              "host": ["{{base_url}}"],
+              "path": ["api", "samples"]
+            }
+          }
+        },
+        {
+          "name": "Get Sample by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/samples/{{sample_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "samples", "{{sample_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Sample by Code",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/samples/code/{{sample_code}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "samples", "code", "{{sample_code}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Samples by Test Order",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/samples/test-order/{{testorder_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "samples", "test-order", "{{testorder_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Samples by Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/samples/status/Collected",
+              "host": ["{{base_url}}"],
+              "path": ["api", "samples", "status", "Collected"]
+            }
+          }
+        },
+        {
+          "name": "Get Samples by Patient",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/samples/patient/{{patient_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "samples", "patient", "{{patient_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Create Sample",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"testOrderId\": \"{{testorder_id}}\",\n  \"sampleType\": \"Blood\",\n  \"collectionDate\": \"2024-01-15T10:00:00Z\",\n  \"collectedBy\": \"{{technician_id}}\",\n  \"notes\": \"Sample collected successfully\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/samples",
+              "host": ["{{base_url}}"],
+              "path": ["api", "samples"]
+            }
+          }
+        },
+        {
+          "name": "Update Sample",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sampleType\": \"Blood\",\n  \"notes\": \"Updated sample information\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/samples/{{sample_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "samples", "{{sample_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Receive Sample",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"receivedBy\": \"{{technician_id}}\",\n  \"storageLocation\": \"Refrigerator A1\",\n  \"notes\": \"Sample received and stored\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/samples/{{sample_id}}/receive",
+              "host": ["{{base_url}}"],
+              "path": ["api", "samples", "{{sample_id}}", "receive"]
+            }
+          }
+        },
+        {
+          "name": "Reject Sample",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rejectionReason\": \"Insufficient volume\",\n  \"rejectedBy\": \"{{technician_id}}\",\n  \"notes\": \"Sample volume too low for testing\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/samples/{{sample_id}}/reject",
+              "host": ["{{base_url}}"],
+              "path": ["api", "samples", "{{sample_id}}", "reject"]
+            }
+          }
+        },
+        {
+          "name": "Mark Sample as Processed",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/samples/{{sample_id}}/processed",
+              "host": ["{{base_url}}"],
+              "path": ["api", "samples", "{{sample_id}}", "processed"]
+            }
+          }
+        },
+        {
+          "name": "Mark Sample as Disposed",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/samples/{{sample_id}}/disposed",
+              "host": ["{{base_url}}"],
+              "path": ["api", "samples", "{{sample_id}}", "disposed"]
+            }
+          }
+        },
+        {
+          "name": "Get Sample Tracking History",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/samples/{{sample_id}}/tracking",
+              "host": ["{{base_url}}"],
+              "path": ["api", "samples", "{{sample_id}}", "tracking"]
+            }
+          }
+        },
+        {
+          "name": "Get Sample Statistics",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/samples/statistics?startDate=2024-01-01&endDate=2024-12-31",
+              "host": ["{{base_url}}"],
+              "path": ["api", "samples", "statistics"],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "2024-01-01"
+                },
+                {
+                  "key": "endDate",
+                  "value": "2024-12-31"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Inventory",
+      "item": [
+        {
+          "name": "Get All Inventory Items",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/inventory",
+              "host": ["{{base_url}}"],
+              "path": ["api", "inventory"]
+            }
+          }
+        },
+        {
+          "name": "Get Inventory Item by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/inventory/{{item_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "inventory", "{{item_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Low Stock Items",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/inventory/low-stock",
+              "host": ["{{base_url}}"],
+              "path": ["api", "inventory", "low-stock"]
+            }
+          }
+        },
+        {
+          "name": "Get Expiring Items",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/inventory/expiring?daysThreshold=30",
+              "host": ["{{base_url}}"],
+              "path": ["api", "inventory", "expiring"],
+              "query": [
+                {
+                  "key": "daysThreshold",
+                  "value": "30"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Items by Category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/inventory/category/Reagents",
+              "host": ["{{base_url}}"],
+              "path": ["api", "inventory", "category", "Reagents"]
+            }
+          }
+        },
+        {
+          "name": "Create Inventory Item",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Glucose Test Strips\",\n  \"code\": \"GTS001\",\n  \"description\": \"Test strips for glucose measurement\",\n  \"category\": \"Reagents\",\n  \"manufacturer\": \"TestCorp\",\n  \"quantity\": 100,\n  \"minimumStockLevel\": 20,\n  \"reorderLevel\": 30,\n  \"unit\": \"Box\",\n  \"unitPrice\": 25.00,\n  \"expiryDate\": \"2025-12-31\",\n  \"batchNumber\": \"BATCH001\",\n  \"storageLocation\": \"Room A\",\n  \"storageConditions\": \"Room temperature\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/inventory",
+              "host": ["{{base_url}}"],
+              "path": ["api", "inventory"]
+            }
+          }
+        },
+        {
+          "name": "Update Inventory Item",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quantity\": 150,\n  \"unitPrice\": 30.00\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/inventory/{{item_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "inventory", "{{item_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Delete Inventory Item",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/inventory/{{item_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "inventory", "{{item_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Suppliers",
+      "item": [
+        {
+          "name": "Get All Suppliers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/suppliers",
+              "host": ["{{base_url}}"],
+              "path": ["api", "suppliers"]
+            }
+          }
+        },
+        {
+          "name": "Get Supplier by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/suppliers/{{supplier_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "suppliers", "{{supplier_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Active Suppliers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/suppliers/active",
+              "host": ["{{base_url}}"],
+              "path": ["api", "suppliers", "active"]
+            }
+          }
+        },
+        {
+          "name": "Create Supplier",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Medical Supplies Inc\",\n  \"contactPerson\": \"John Smith\",\n  \"email\": \"john@medsupplies.com\",\n  \"phone\": \"+1234567890\",\n  \"address\": \"123 Medical St\",\n  \"city\": \"New York\",\n  \"state\": \"NY\",\n  \"zipCode\": \"10001\",\n  \"country\": \"USA\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/suppliers",
+              "host": ["{{base_url}}"],
+              "path": ["api", "suppliers"]
+            }
+          }
+        },
+        {
+          "name": "Update Supplier",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated Medical Supplies Inc\",\n  \"phone\": \"+1234567891\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/suppliers/{{supplier_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "suppliers", "{{supplier_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Delete Supplier",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/suppliers/{{supplier_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "suppliers", "{{supplier_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Purchase Orders",
+      "item": [
+        {
+          "name": "Get All Purchase Orders",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/purchaseorders",
+              "host": ["{{base_url}}"],
+              "path": ["api", "purchaseorders"]
+            }
+          }
+        },
+        {
+          "name": "Get Purchase Order by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/purchaseorders/{{po_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "purchaseorders", "{{po_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Purchase Orders by Supplier",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/purchaseorders/supplier/{{supplier_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "purchaseorders", "supplier", "{{supplier_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Purchase Orders by Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/purchaseorders/status/Draft",
+              "host": ["{{base_url}}"],
+              "path": ["api", "purchaseorders", "status", "Draft"]
+            }
+          }
+        },
+        {
+          "name": "Create Purchase Order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"supplierId\": \"{{supplier_id}}\",\n  \"items\": [\n    {\n      \"inventoryItemId\": \"{{item_id}}\",\n      \"quantity\": 50,\n      \"unitPrice\": 25.00\n    }\n  ],\n  \"notes\": \"Urgent order for glucose strips\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/purchaseorders",
+              "host": ["{{base_url}}"],
+              "path": ["api", "purchaseorders"]
+            }
+          }
+        },
+        {
+          "name": "Submit Purchase Order",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/purchaseorders/{{po_id}}/submit",
+              "host": ["{{base_url}}"],
+              "path": ["api", "purchaseorders", "{{po_id}}", "submit"]
+            }
+          }
+        },
+        {
+          "name": "Approve Purchase Order",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/purchaseorders/{{po_id}}/approve",
+              "host": ["{{base_url}}"],
+              "path": ["api", "purchaseorders", "{{po_id}}", "approve"]
+            }
+          }
+        },
+        {
+          "name": "Cancel Purchase Order",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/purchaseorders/{{po_id}}/cancel",
+              "host": ["{{base_url}}"],
+              "path": ["api", "purchaseorders", "{{po_id}}", "cancel"]
+            }
+          }
+        },
+        {
+          "name": "Receive Purchase Order Item",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"receivedQuantity\": 50,\n  \"receivedDate\": \"2024-01-15T10:00:00Z\",\n  \"notes\": \"All items received in good condition\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/purchaseorders/{{po_id}}/receive",
+              "host": ["{{base_url}}"],
+              "path": ["api", "purchaseorders", "{{po_id}}", "receive"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Package Subscriptions",
+      "item": [
+        {
+          "name": "Get All Package Subscriptions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/packagesubscriptions",
+              "host": ["{{base_url}}"],
+              "path": ["api", "packagesubscriptions"]
+            }
+          }
+        },
+        {
+          "name": "Get Package Subscription by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/packagesubscriptions/{{subscription_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "packagesubscriptions", "{{subscription_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Subscriptions by Patient",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/packagesubscriptions/patient/{{patient_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "packagesubscriptions", "patient", "{{patient_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Active Subscriptions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/packagesubscriptions/active",
+              "host": ["{{base_url}}"],
+              "path": ["api", "packagesubscriptions", "active"]
+            }
+          }
+        },
+        {
+          "name": "Create Package Subscription",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patientId\": \"{{patient_id}}\",\n  \"testPackageId\": \"{{package_id}}\",\n  \"startDate\": \"2024-01-15\",\n  \"endDate\": \"2024-12-31\",\n  \"frequency\": \"Monthly\",\n  \"testsRemaining\": 12\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/packagesubscriptions",
+              "host": ["{{base_url}}"],
+              "path": ["api", "packagesubscriptions"]
+            }
+          }
+        },
+        {
+          "name": "Cancel Subscription",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "\"Patient requested cancellation\""
+            },
+            "url": {
+              "raw": "{{base_url}}/api/packagesubscriptions/{{subscription_id}}/cancel",
+              "host": ["{{base_url}}"],
+              "path": ["api", "packagesubscriptions", "{{subscription_id}}", "cancel"]
+            }
+          }
+        },
+        {
+          "name": "Pause Subscription",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/packagesubscriptions/{{subscription_id}}/pause",
+              "host": ["{{base_url}}"],
+              "path": ["api", "packagesubscriptions", "{{subscription_id}}", "pause"]
+            }
+          }
+        },
+        {
+          "name": "Resume Subscription",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/packagesubscriptions/{{subscription_id}}/resume",
+              "host": ["{{base_url}}"],
+              "path": ["api", "packagesubscriptions", "{{subscription_id}}", "resume"]
+            }
+          }
+        },
+        {
+          "name": "Use Test from Subscription",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/packagesubscriptions/{{subscription_id}}/use-test",
+              "host": ["{{base_url}}"],
+              "path": ["api", "packagesubscriptions", "{{subscription_id}}", "use-test"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Insurance Claims",
+      "item": [
+        {
+          "name": "Get All Insurance Claims",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/insuranceclaims",
+              "host": ["{{base_url}}"],
+              "path": ["api", "insuranceclaims"]
+            }
+          }
+        },
+        {
+          "name": "Get Insurance Claim by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/insuranceclaims/{{claim_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "insuranceclaims", "{{claim_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Claims by Patient",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/insuranceclaims/patient/{{patient_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "insuranceclaims", "patient", "{{patient_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Claims by Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/insuranceclaims/status/Draft",
+              "host": ["{{base_url}}"],
+              "path": ["api", "insuranceclaims", "status", "Draft"]
+            }
+          }
+        },
+        {
+          "name": "Create Insurance Claim",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoiceId\": \"{{invoice_id}}\",\n  \"patientId\": \"{{patient_id}}\",\n  \"insuranceProvider\": \"Blue Cross\",\n  \"policyNumber\": \"POL123456\",\n  \"groupNumber\": \"GRP789\",\n  \"claimAmount\": 500.00,\n  \"notes\": \"Routine lab tests\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/insuranceclaims",
+              "host": ["{{base_url}}"],
+              "path": ["api", "insuranceclaims"]
+            }
+          }
+        },
+        {
+          "name": "Update Insurance Claim",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"claimAmount\": 550.00,\n  \"notes\": \"Updated claim amount\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/insuranceclaims/{{claim_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "insuranceclaims", "{{claim_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Submit Insurance Claim",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/insuranceclaims/{{claim_id}}/submit",
+              "host": ["{{base_url}}"],
+              "path": ["api", "insuranceclaims", "{{claim_id}}", "submit"]
+            }
+          }
+        },
+        {
+          "name": "Approve Insurance Claim",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "500.00"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/insuranceclaims/{{claim_id}}/approve",
+              "host": ["{{base_url}}"],
+              "path": ["api", "insuranceclaims", "{{claim_id}}", "approve"]
+            }
+          }
+        },
+        {
+          "name": "Reject Insurance Claim",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "\"Insufficient documentation\""
+            },
+            "url": {
+              "raw": "{{base_url}}/api/insuranceclaims/{{claim_id}}/reject",
+              "host": ["{{base_url}}"],
+              "path": ["api", "insuranceclaims", "{{claim_id}}", "reject"]
+            }
+          }
+        },
+        {
+          "name": "Mark Insurance Claim as Paid",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/insuranceclaims/{{claim_id}}/paid",
+              "host": ["{{base_url}}"],
+              "path": ["api", "insuranceclaims", "{{claim_id}}", "paid"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Payment Plans",
+      "item": [
+        {
+          "name": "Get All Payment Plans",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/paymentplans",
+              "host": ["{{base_url}}"],
+              "path": ["api", "paymentplans"]
+            }
+          }
+        },
+        {
+          "name": "Get Payment Plan by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/paymentplans/{{plan_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "paymentplans", "{{plan_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Payment Plans by Patient",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/paymentplans/patient/{{patient_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "paymentplans", "patient", "{{patient_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Active Payment Plans",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/paymentplans/active",
+              "host": ["{{base_url}}"],
+              "path": ["api", "paymentplans", "active"]
+            }
+          }
+        },
+        {
+          "name": "Create Payment Plan",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoiceId\": \"{{invoice_id}}\",\n  \"patientId\": \"{{patient_id}}\",\n  \"totalAmount\": 1000.00,\n  \"installmentCount\": 4,\n  \"installmentAmount\": 250.00,\n  \"frequency\": \"Monthly\",\n  \"startDate\": \"2024-01-15\",\n  \"notes\": \"Payment plan for lab services\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/paymentplans",
+              "host": ["{{base_url}}"],
+              "path": ["api", "paymentplans"]
+            }
+          }
+        },
+        {
+          "name": "Process Payment Plan Payment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"installmentId\": \"{{installment_id}}\",\n  \"amount\": 250.00,\n  \"paymentMethod\": \"Credit Card\",\n  \"paymentDate\": \"2024-01-15T10:00:00Z\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/paymentplans/{{plan_id}}/process-payment",
+              "host": ["{{base_url}}"],
+              "path": ["api", "paymentplans", "{{plan_id}}", "process-payment"]
+            }
+          }
+        },
+        {
+          "name": "Cancel Payment Plan",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/paymentplans/{{plan_id}}/cancel",
+              "host": ["{{base_url}}"],
+              "path": ["api", "paymentplans", "{{plan_id}}", "cancel"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Refunds",
+      "item": [
+        {
+          "name": "Get All Refunds",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/refunds",
+              "host": ["{{base_url}}"],
+              "path": ["api", "refunds"]
+            }
+          }
+        },
+        {
+          "name": "Get Refund by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/refunds/{{refund_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "refunds", "{{refund_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Refunds by Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/refunds/status/Pending",
+              "host": ["{{base_url}}"],
+              "path": ["api", "refunds", "status", "Pending"]
+            }
+          }
+        },
+        {
+          "name": "Create Refund",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"paymentId\": \"{{payment_id}}\",\n  \"amount\": 100.00,\n  \"reason\": \"Patient cancellation\",\n  \"method\": \"Original Payment Method\",\n  \"notes\": \"Refund for cancelled services\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/refunds",
+              "host": ["{{base_url}}"],
+              "path": ["api", "refunds"]
+            }
+          }
+        },
+        {
+          "name": "Approve Refund",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "\"Approved by manager\""
+            },
+            "url": {
+              "raw": "{{base_url}}/api/refunds/{{refund_id}}/approve",
+              "host": ["{{base_url}}"],
+              "path": ["api", "refunds", "{{refund_id}}", "approve"]
+            }
+          }
+        },
+        {
+          "name": "Reject Refund",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "\"Services already provided\""
+            },
+            "url": {
+              "raw": "{{base_url}}/api/refunds/{{refund_id}}/reject",
+              "host": ["{{base_url}}"],
+              "path": ["api", "refunds", "{{refund_id}}", "reject"]
+            }
+          }
+        },
+        {
+          "name": "Process Refund",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/refunds/{{refund_id}}/process",
+              "host": ["{{base_url}}"],
+              "path": ["api", "refunds", "{{refund_id}}", "process"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Taxes",
+      "item": [
+        {
+          "name": "Get All Tax Configurations",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/taxes/configurations",
+              "host": ["{{base_url}}"],
+              "path": ["api", "taxes", "configurations"]
+            }
+          }
+        },
+        {
+          "name": "Get Active Tax Configurations",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/taxes/configurations/active",
+              "host": ["{{base_url}}"],
+              "path": ["api", "taxes", "configurations", "active"]
+            }
+          }
+        },
+        {
+          "name": "Get Tax Configuration by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/taxes/configurations/{{tax_config_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "taxes", "configurations", "{{tax_config_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Create Tax Configuration",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Sales Tax\",\n  \"rate\": 8.5,\n  \"description\": \"State sales tax\",\n  \"isActive\": true\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/taxes/configurations",
+              "host": ["{{base_url}}"],
+              "path": ["api", "taxes", "configurations"]
+            }
+          }
+        },
+        {
+          "name": "Update Tax Configuration",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rate\": 9.0,\n  \"description\": \"Updated state sales tax\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/taxes/configurations/{{tax_config_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "taxes", "configurations", "{{tax_config_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Delete Tax Configuration",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/taxes/configurations/{{tax_config_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "taxes", "configurations", "{{tax_config_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Calculate Tax",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": 100.00,\n  \"taxConfigurationIds\": [\"{{tax_config_id}}\"]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/taxes/calculate",
+              "host": ["{{base_url}}"],
+              "path": ["api", "taxes", "calculate"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Analytics",
+      "item": [
+        {
+          "name": "Get Dashboard Metrics",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/analytics/dashboard",
+              "host": ["{{base_url}}"],
+              "path": ["api", "analytics", "dashboard"]
+            }
+          }
+        },
+        {
+          "name": "Get Financial Report",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/analytics/reports/financial?startDate=2024-01-01&endDate=2024-12-31",
+              "host": ["{{base_url}}"],
+              "path": ["api", "analytics", "reports", "financial"],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "2024-01-01"
+                },
+                {
+                  "key": "endDate",
+                  "value": "2024-12-31"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Operational Report",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/analytics/reports/operational?startDate=2024-01-01&endDate=2024-12-31",
+              "host": ["{{base_url}}"],
+              "path": ["api", "analytics", "reports", "operational"],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "2024-01-01"
+                },
+                {
+                  "key": "endDate",
+                  "value": "2024-12-31"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Clinical Report",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/analytics/reports/clinical?startDate=2024-01-01&endDate=2024-12-31",
+              "host": ["{{base_url}}"],
+              "path": ["api", "analytics", "reports", "clinical"],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "2024-01-01"
+                },
+                {
+                  "key": "endDate",
+                  "value": "2024-12-31"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Inventory Report",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/analytics/reports/inventory?startDate=2024-01-01&endDate=2024-12-31",
+              "host": ["{{base_url}}"],
+              "path": ["api", "analytics", "reports", "inventory"],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "2024-01-01"
+                },
+                {
+                  "key": "endDate",
+                  "value": "2024-12-31"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Get All Users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/users",
+              "host": ["{{base_url}}"],
+              "path": ["api", "users"]
+            }
+          }
+        },
+        {
+          "name": "Get User by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/users/{{user_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "users", "{{user_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"newuser\",\n  \"email\": \"newuser@example.com\",\n  \"password\": \"NewPass123!\",\n  \"firstName\": \"New\",\n  \"lastName\": \"User\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/users/register",
+              "host": ["{{base_url}}"],
+              "path": ["api", "users", "register"]
+            }
+          }
+        },
+        {
+          "name": "Assign Role to User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"{{user_id}}\",\n  \"roleId\": \"{{role_id}}\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/users/assign-role",
+              "host": ["{{base_url}}"],
+              "path": ["api", "users", "assign-role"]
+            }
+          }
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"{{user_id}}\",\n  \"firstName\": \"Updated\",\n  \"lastName\": \"User\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/users/{{user_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "users", "{{user_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Change User Password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"{{user_id}}\",\n  \"currentPassword\": \"OldPass123!\",\n  \"newPassword\": \"NewPass123!\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/users/{{user_id}}/change-password",
+              "host": ["{{base_url}}"],
+              "path": ["api", "users", "{{user_id}}", "change-password"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Roles",
+      "item": [
+        {
+          "name": "Get All Roles",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/roles",
+              "host": ["{{base_url}}"],
+              "path": ["api", "roles"]
+            }
+          }
+        },
+        {
+          "name": "Get Role by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/roles/{{role_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "roles", "{{role_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Create Role",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"CustomRole\",\n  \"description\": \"Custom role for specific permissions\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/roles",
+              "host": ["{{base_url}}"],
+              "path": ["api", "roles"]
+            }
+          }
+        },
+        {
+          "name": "Update Role",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"{{role_id}}\",\n  \"name\": \"UpdatedRole\",\n  \"description\": \"Updated role description\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/roles/{{role_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "roles", "{{role_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Delete Role",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/roles/{{role_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "roles", "{{role_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Discounts",
+      "item": [
+        {
+          "name": "Get All Discount Rules",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/discounts/rules",
+              "host": ["{{base_url}}"],
+              "path": ["api", "discounts", "rules"]
+            }
+          }
+        },
+        {
+          "name": "Get Active Discount Rules",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/discounts/rules/active",
+              "host": ["{{base_url}}"],
+              "path": ["api", "discounts", "rules", "active"]
+            }
+          }
+        },
+        {
+          "name": "Get Discount Rule by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/discounts/rules/{{rule_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "discounts", "rules", "{{rule_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Create Discount Rule",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Senior Citizen Discount\",\n  \"description\": \"10% discount for patients over 65\",\n  \"discountType\": \"Percentage\",\n  \"discountValue\": 10.0,\n  \"minimumAmount\": 100.00,\n  \"isActive\": true\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/discounts/rules",
+              "host": ["{{base_url}}"],
+              "path": ["api", "discounts", "rules"]
+            }
+          }
+        },
+        {
+          "name": "Update Discount Rule",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"discountValue\": 15.0,\n  \"description\": \"Updated senior citizen discount\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/discounts/rules/{{rule_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "discounts", "rules", "{{rule_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Delete Discount Rule",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/discounts/rules/{{rule_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "discounts", "rules", "{{rule_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Calculate Discount",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoiceId\": \"{{invoice_id}}\",\n  \"discountRuleIds\": [\"{{rule_id}}\"]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/discounts/calculate",
+              "host": ["{{base_url}}"],
+              "path": ["api", "discounts", "calculate"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Health Checks",
+      "item": [
+        {
+          "name": "Health Check - Ready",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/health/ready",
+              "host": ["{{base_url}}"],
+              "path": ["health", "ready"]
+            }
+          }
+        },
+        {
+          "name": "Health Check - Live",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/health/live",
+              "host": ["{{base_url}}"],
+              "path": ["health", "live"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
